@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 class PostsIndex extends Component {
   componentDidMount() {
+    // invoke fetchPosts action creator
     this.props.fetchPosts();
   }
 
@@ -42,4 +43,6 @@ function mapStateToProps(state) {
   return { posts: state.posts };
 }
 
+// connect Redux state to PostsIndex component by having Redux pass
+// necessary pieces of state and action creators as props
 export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
