@@ -6,12 +6,16 @@ import { createPost } from '../actions';
 
 class PostsNew extends Component {
   renderField(field) {
+    // redux-form passes 'field' object to callback
+    // passed to component attribute on Field component
     const { meta: { touched, error } } = field;
+    // conditionally add error CSS class to input
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
     
     return (
       <div className={className}>
         <label>{field.label}</label>
+        {/* props within field.input connect input component to Redux */}
         <input 
           className="form-control"
           type="text"
@@ -31,6 +35,7 @@ class PostsNew extends Component {
   }
 
   render() {
+    // handleSubmit provided by redux-form to take care of preventing default browser actions
     const { handleSubmit } = this.props;
 
     return (
@@ -75,6 +80,7 @@ function validate(values) {
   return errors;
 }
 
+// connect PostsNew form to Redux
 export default reduxForm({
   form: 'PostsNewForm',
   validate
